@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<script>
+var xhr = new XMLHttpRequest();
+xhr.open('GET', "http://localhost:3000/api/v1/products", true);
+xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+xhr.setRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+xhr.send();
+
+xhr.onreadystatechange = processRequest;
+
+function processRequest(e) {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        var response = JSON.parse(xhr.responseText);
+        console.log(response);
+    }
+}
+</script>
+<script>
+function datasent() {
+
+    var prodid= parseInt(document.getElementById('prodid').value);
+    var prodname= document.getElementById('prodname').value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', "http://localhost:3000/api/v1/products", true);
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhr.setRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+    var myJSON =JSON.stringify({"product_brand_name":prodname,"product_id":prodid});
+    console.log(myJSON)
+    xhr.send(myJSON)
+
+}
+</script>
+
+<script>
+function datasent(){
+
+  var cat_id= document.getElementById('cat_id').value;
+  var cat_name= document.getElementById('cat_name').value;
+  var prod_ids= document.getElementById('prod_ids').value;
+  var prod_brand_names= document.getElementById('prod_brand_names').value;
+  var prod_names= document.getElementById('prod_names').value;
+  var qtys= document.getElementById('qtys').value;
+  var prod_price= document.getElementById('prod_price').value;
+  var prod_warranty= document.getElementById('prod_warranty').value;
+  var prod_sellername= document.getElementById('prod_sellername').value;
+  var prod_rating= document.getElementById('prod_rating').value;
+
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', "http://localhost:3000/api/v1/products", true);
+  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+  xhr.setRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+  var myJSON_POST= JSON.stringify({"category_id":cat_id,"category_name":cat_name,"product_id":prod_ids,"product_brand_name":prod_brand_names,"product_name":prod_names,"qty":qtys,"price":prod_price,"warranty":prod_warranty,"seller_name":prod_sellername,"rating": prod_rating})
+  console.log(myJSON_POST)
+  xhr.send(myJSON_POST);
+
+}
+</script>
+</head>
+<body>
+    <form method="put" action="#">
+        <label>product_brand_name: <input type="text"id="prodname" name="product_brand_name"></label>
+        <label>product_id: <input type="intNumber" id="prodid" name="product_id"></label>
+        <input type="button" value="Send" onclick="datasent()">
+    </form>
+    <div id="result"></div>
+</body>
+
+<body>
+    <form method="post" action="#">
+        <label>category_id: <input type="number"id="cat_id" name="category_id"></label>
+        <label>category_name: <input type="text"id="cat_name" name="category_name"></label>
+        <label>product_id: <input type="number"id="prod_ids" name="product_id"></label>
+        <label>product_brandname_name: <input type="text"id="prod_brand_names" name="product_brand_name"></label>
+        <label>product_name: <input type="text"id="prod_names" name="product_names"></label>
+        <label>qty: <input type="number"id="qtys" name="qty"></label>
+        <label>price: <input type="number"id="prod_price" name="price"></label>
+        <label>warranty: <input type="text"id="prod_warranty" name="warranty"></label>
+        <label>sellername: <input type="text"id="prod_sellername" name="sellername"></label>
+        <label>rating: <input type="number"id="prod_rating" name="rating"></label>
+        <input type="button" value="Send" onclick="datasent()">
+    </form>
+    <div id="result"></div>
+</body>
+</html>
