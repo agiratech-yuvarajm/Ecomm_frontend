@@ -23,7 +23,7 @@ function listUsers(req, callback) {
 
 		try {
 
-			  database.con.query("SELECT * from users", function(err,result) {
+			  database.con.query("SELECT user_id, user_name, password, mobile_no, email, address, payment_mode from users", function(err,result) {
 
 		    		let res={}
 						if(err) {
@@ -46,7 +46,7 @@ function listUsers(req, callback) {
 						}
 				});
 		}
-		catch(ex) {
+		catch(ex) {console.log(res)
 				console.log(ex)
 				callback(400,'error');
 		}
@@ -57,7 +57,7 @@ function updateUsers(req,callback,status) {
 
 		try {
 
-				let sql= "UPDATE users SET address = ('"+req.address+ "') WHERE user_id=('"+req.user_id+"') ";
+				let sql= "UPDATE users SET payment_mode = ('"+req.payment_mode+ "') WHERE user_id=('"+req.user_id+"') ";
 			  database.con.query(sql, function (err, result) {
 
 						let res={}

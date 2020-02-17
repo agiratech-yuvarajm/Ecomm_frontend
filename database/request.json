@@ -40,3 +40,16 @@ var prod_rating= document.getElementById('prod_rating').value;
 {
   "category_id":"cat_id","category_name":"cat_name",
 }
+
+{
+"user_id":1,
+"user_name": "raj",
+"password": "raj@123",
+"mobile_no":"102",
+"email": "raj@gmail.com",
+"address":"chennai",
+"payment_mode":"cc"
+}
+
+
+{"user_id":userID,"user_name": userName,"password": Password,"mobile_no":mobileNo,"email":Email,"address":Address,"payment_mode":paymentMode}

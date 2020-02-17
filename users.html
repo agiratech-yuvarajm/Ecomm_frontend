@@ -1,0 +1,120 @@
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<script>
+var xhr = new XMLHttpRequest();
+xhr.open('GET', "http://localhost:3000/api/v1/users", true);
+xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+xhr.setRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+xhr.send();
+
+xhr.onreadystatechange = processRequest;
+
+function processRequest(e) {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        var response = JSON.parse(xhr.responseText);
+        console.log(response);
+    }
+}
+</script>
+<script>
+function datasent() {
+
+    var pay_mode=document.getElementById('pay_mode').value;
+    var userId= document.getElementById('userId').value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', "http://localhost:3000/api/v1/users", true);
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhr.setRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+    var myJSON_PUT =JSON.stringify({"payment_mode":pay_mode,"user_id":userId});
+    console.log(myJSON_PUT)
+    xhr.send(myJSON_PUT)
+
+}
+</script>
+
+<script>
+function datasent(){
+
+  var userID= document.getElementById('userID').value;
+  var userName= document.getElementById('userName').value;
+  var Password= document.getElementById('Password').value;
+  var mobileNo= document.getElementById('mobileNo').value;
+  var Email= document.getElementById('Email').value;
+  var Address= document.getElementById('Address').value;
+  var paymentMode= document.getElementById('paymentMode').value;
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', "http://localhost:3000/api/v1/users", true);
+  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+  xhr.setRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+  var myJSON_POST= JSON.stringify({"user_id":userID,"user_name": userName,"password": Password,"mobile_no":mobileNo,"email":Email,"address":Address,"payment_mode":paymentMode})
+  console.log(myJSON_POST)
+  xhr.send(myJSON_POST);
+
+}
+</script>
+
+<script>
+function datasent() {
+
+    var userIds= parseInt(document.getElementById('userIds').value);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('DELETE', "http://localhost:3000/api/v1/users", true);
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhr.setRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+    var myJSON_DELETE =JSON.stringify({"user_id":userIds});
+    console.log(myJSON_DELETE)
+    xhr.send(myJSON_DELETE)
+
+}
+</script>
+
+</head>
+
+<body>
+    <form method="put" action="#">
+        <label>payment_mode: <input type="text"id="pay_mode" name="payment_mode"></label>
+        <label>user_id: <input type="intNumber" id="userId" name="user_id"></label>
+        <input type="button" value="Send" onclick="datasent()">
+    </form>
+    <div id="result"></div>
+</body>
+
+<body>
+    <form method="post" action="#">
+        <label>user_id: <input type="number" id="userID" name="user_id"></label>
+        <label>user_name: <input type="text" id="userName" name="user_name"></label>
+        <label>password: <input type="text" id="Password" name="password"></label>
+        <label>mobile_no: <input type="number" id="mobileNo" name="mobile_no"></label>
+        <label>email: <input type="text" id="Email" name="email"></label>
+        <label>address: <input type="text" id="Address" name="address"></label>
+        <label>payment_mode: <input type="text" id="paymentMode" name="payment_mode"></label>
+        <input type="button" value="Send" onclick="datasent()">
+
+    </form>
+    <div id="result"></div>
+</body>
+
+<body>
+    <form method="delete" action="#">
+        <label>user_id: <input type="intNumber" id="userIds" name="user_id"></label>
+        <input type="button" value="Send" onclick="datasent()">
+    </form>
+    <div id="result"></div>
+</body>
+
+</html>
