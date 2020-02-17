@@ -32,9 +32,9 @@ function datasent() {
     xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-    var myJSON =JSON.stringify({"product_brand_name":prodname,"product_id":prodid});
-    console.log(myJSON)
-    xhr.send(myJSON)
+    var myJSON_PUT =JSON.stringify({"product_brand_name":prodname,"product_id":prodid});
+    console.log(myJSON_PUT)
+    xhr.send(myJSON_PUT)
 
 }
 </script>
@@ -67,6 +67,24 @@ function datasent(){
 
 }
 </script>
+<script>
+function datasent() {
+
+    var prodid= parseInt(document.getElementById('prodId').value);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('DELETE', "http://localhost:3000/api/v1/products", true);
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhr.setRequestHeader('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+    var myJSON_DELETE =JSON.stringify({"product_id":prodId});
+    console.log(myJSON_DELETE)
+    xhr.send(myJSON_DELETE)
+
+}
+</script>
 </head>
 <body>
     <form method="put" action="#">
@@ -76,7 +94,6 @@ function datasent(){
     </form>
     <div id="result"></div>
 </body>
-
 <body>
     <form method="post" action="#">
         <label>category_id: <input type="number"id="cat_id" name="category_id"></label>
@@ -89,6 +106,13 @@ function datasent(){
         <label>warranty: <input type="text"id="prod_warranty" name="warranty"></label>
         <label>sellername: <input type="text"id="prod_sellername" name="sellername"></label>
         <label>rating: <input type="number"id="prod_rating" name="rating"></label>
+        <input type="button" value="Send" onclick="datasent()">
+    </form>
+    <div id="result"></div>
+</body>
+<body>
+    <form method="put" action="#">
+        <label>product_id: <input type="intNumber" id="prodId" name="product_id"></label>
         <input type="button" value="Send" onclick="datasent()">
     </form>
     <div id="result"></div>

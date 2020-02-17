@@ -63,7 +63,9 @@ function updateProducts(req, callback) {
 function deleteProducts(req, callback) {
 
 		try{
-
+				console.log(req)
+			  if (!req.product_id) throw new Error('product_id not exist')
+				console.log("hi")
 		  	let sql= "DELETE FROM product_items WHERE product_id  = ('"+req.product_id+"')";
 		    database.con.query(sql, function (err, result) {
 		    		let response = {}
